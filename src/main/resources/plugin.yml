@@ -1,0 +1,9 @@
+name: meins_parkour
+version: '${project.version}'
+main: de.ender.parkour.Main
+api-version: 1.19
+depend: [ meins_core ]
+
+commands:
+  parkour:
+    permission: meins_parkour.commands.parkour
