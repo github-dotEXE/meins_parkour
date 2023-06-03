@@ -31,7 +31,7 @@ public class ParkourManager extends TimedGameManager {
     private final String name;
     private final boolean couldFly;
     private final @Nullable ItemStack @NotNull [] playerInventory;
-    private float startYaw ;
+    private final float startYaw ;
 
     public ParkourManager(Player player, String name) {
         this.player = player;
