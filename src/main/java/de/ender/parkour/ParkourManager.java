@@ -27,15 +27,19 @@ public class ParkourManager extends TimedGameManager {
     public static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK, 1).setName(ChatColor.GOLD + "Start").addLore(ChatColor.GOLD + "Start").build();
     public static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK, 1).setName(ChatColor.DARK_RED + "Cancel").addLore(ChatColor.DARK_RED + "Cancel").build();
     private int currentCheckpoint;
+    private float currentCheckpointYaw;
     private final String name;
     private final boolean couldFly;
     private final @Nullable ItemStack @NotNull [] playerInventory;
+    private float startYaw ;
 
     public ParkourManager(Player player, String name) {
         this.player = player;
         this.name = name;
         this.playerInventory = player.getInventory().getContents();
+        this.startYaw = player.getLocation().getYaw();
         this.currentCheckpoint = -1;
+        this.currentCheckpointYaw = player.getLocation().getYaw();
 
         allInstances.put(player,this);
         couldFly = player.getAllowFlight();
@@ -78,6 +82,7 @@ public class ParkourManager extends TimedGameManager {
             player.sendActionBar(ChatColor.GREEN + "You've reached a checkpoint!");
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,2,2);
             currentCheckpoint = newCC;
+            currentCheckpointYaw = player.getLocation().getYaw();
         }
     }
 
@@ -122,9 +127,11 @@ public class ParkourManager extends TimedGameManager {
         CConfig cConfig = new CConfig("parkourLocations",Main.getPlugin());
         FileConfiguration config = cConfig.getCustomConfig();
         Location loc = config.getLocation("checkpoint."+name+"."+currentCheckpoint);
-        if(loc == null) loc = config.getLocation("start."+name);
-        if(loc == null) return;
-        loc.setYaw(player.getLocation().getYaw());
+        if(loc == null) {
+            loc = config.getLocation("start." + name);
+            if(loc == null) return;
+            loc.setYaw(startYaw);
+        } else loc.setYaw(currentCheckpointYaw);
         loc.setPitch(player.getLocation().getPitch());
         loc.add(0.5,0,0.5);
         player.teleport(loc);

@@ -1,6 +1,7 @@
 package de.ender.parkour;
 
 import de.ender.core.Log;
+import de.ender.core.UpdateChecker;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
@@ -11,7 +12,7 @@ public final class Main extends JavaPlugin {
         Log.log("Enabling Meins Parkour...");
         getServer().getPluginManager().registerEvents(new ParkourListener(),this);
         getCommand("parkour").setExecutor(new ParkourCMD());
-
+        new UpdateChecker(this,"master").check().downloadLatestMeins();
         plugin = this;
     }
 
