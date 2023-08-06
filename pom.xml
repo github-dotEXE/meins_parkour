@@ -6,7 +6,7 @@
 
     <groupId>de.ender</groupId>
     <artifactId>parkour</artifactId>
-    <version>1.4</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
 
     <name>meins_parkour</name>
