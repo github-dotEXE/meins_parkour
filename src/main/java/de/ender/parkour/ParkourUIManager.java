@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ParkourUIManager {
     private static final HashMap<Player,ItemStack[]> inventorys = new HashMap<>();
-    private static ItemStack checkpointItem = new ItemBuilder(Material.IRON_BLOCK,1).setName("§fCheckpoint").build();
-    private static ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("§6Start").build();
-    private static ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("§4Cancel").build();
+    private static final ItemStack checkpointItem = new ItemBuilder(Material.IRON_BLOCK,1).setName("§fCheckpoint").build();
+    private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("§6Start").build();
+    private static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("§4Cancel").build();
     public static void giveItems(Player player){
         inventorys.put(player,player.getInventory().getContents().clone());
         player.getInventory().clear();

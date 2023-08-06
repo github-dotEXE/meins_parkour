@@ -17,7 +17,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ParkourListener(),this);
         getCommand("parkour").setExecutor(new ParkourCMD());
         getCommand("parkour").setTabCompleter(new TabCompleter()
-                .addCompI(1,"set","add","remove","show","list","colors")
+                .addCompI(0,"set","add","remove","show","list","colors")
                 .addPathedComp("set","start","end")
                 .addPathedComp("add","checkpoint")
                 .addMultiPathedComp(new String[]{"checkpoint", "start", "end"},"remove","colors.setcolor")

@@ -3,8 +3,6 @@ package de.ender.parkour;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import de.ender.core.CConfig;
-import de.ender.parkour.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

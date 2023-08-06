@@ -39,8 +39,6 @@ public class ParkourSessionManager {
     }
 
     public static void cancelAll() {
-        parkourSessions.forEach((player,session)->{
-            cancel(player,true);
-        });
+        parkourSessions.forEach((player,session)-> cancel(player,true));
     }
 }
