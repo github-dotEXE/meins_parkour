@@ -82,8 +82,8 @@ public class ParkourManager extends TimedGameManager {
             player.sendActionBar(ChatColor.GREEN + "You've reached a checkpoint!");
             player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,2,2);
             currentCheckpoint = newCC;
-            currentCheckpointYaw = player.getLocation().getYaw();
         }
+        currentCheckpointYaw = player.getLocation().getYaw();
     }
 
     public long getTime(){
@@ -128,9 +128,8 @@ public class ParkourManager extends TimedGameManager {
         FileConfiguration config = cConfig.getCustomConfig();
         Location loc = config.getLocation("checkpoint."+name+"."+currentCheckpoint);
         if(loc == null) {
-            loc = config.getLocation("start." + name);
-            if(loc == null) return;
-            loc.setYaw(startYaw);
+            tpStart();
+            return;
         } else loc.setYaw(currentCheckpointYaw);
         loc.setPitch(player.getLocation().getPitch());
         loc.add(0.5,0,0.5);
@@ -139,9 +138,9 @@ public class ParkourManager extends TimedGameManager {
     public void tpStart(){
         CConfig cConfig = new CConfig("parkourLocations",Main.getPlugin());
         FileConfiguration config = cConfig.getCustomConfig();
-        Location loc = config.getLocation("start."+name);
+        Location loc = config.getLocation("start." + name);
         if(loc == null) return;
-        loc.setYaw(player.getLocation().getYaw());
+        loc.setYaw(startYaw);
         loc.setPitch(player.getLocation().getPitch());
         loc.add(0.5,0,0.5);
         player.teleport(loc);

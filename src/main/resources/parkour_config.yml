@@ -1,0 +1,43 @@
+checkpoint:
+  '1':
+    '1':
+      ==: Color
+      ALPHA: 255
+      RED: 127
+      BLUE: 112
+      GREEN: 250
+    '2':
+      ==: Color
+      ALPHA: 255
+      RED: 98
+      BLUE: 88
+      GREEN: 173
+start:
+  '1':
+    '1':
+      ==: Color
+      ALPHA: 255
+      RED: 54
+      BLUE: 155
+      GREEN: 173
+    '2':
+      ==: Color
+      ALPHA: 255
+      RED: 125
+      BLUE: 231
+      GREEN: 250
+end:
+  '1':
+    '1':
+      ==: Color
+      ALPHA: 255
+      RED: 250
+      BLUE: 103
+      GREEN: 111
+    '2':
+      ==: Color
+      ALPHA: 255
+      RED: 173
+      BLUE: 54
+      GREEN: 60
+mode: '1'

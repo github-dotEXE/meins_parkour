@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ParkourCMD implements CommandExecutor {
@@ -39,13 +40,22 @@ public class ParkourCMD implements CommandExecutor {
                 break;
 
             case "del":
-                if (args[1].equals("checkpoint")) {
-                    Objects.requireNonNull(config.getConfigurationSection("checkpoint")).getValues(true).forEach((namepath, checkpointloc) -> {
-                        if (checkpointloc.equals(loc)) config.set(args[1]+"."+args[2]+"."+namepath.substring(namepath.indexOf(".")+1),null);
-                    });
+                if(args.length ==3) {
+                    if (args[1].equals("checkpoint")) {
+                        Objects.requireNonNull(config.getConfigurationSection("checkpoint")).getValues(true).forEach((namepath, checkpointloc) -> {
+                            if (checkpointloc.equals(loc))
+                                //config.set(args[1] + "." + args[2] + "." + namepath.substring(namepath.indexOf(".") + 1), null);
+                                config.set(namepath, null);
+                        });
+                        break;
+                    }
+                    config.set(args[1] + "." + args[2], null);
                     break;
                 }
-                config.set(args[1]+"."+args[2],null);
+                for (String pos:
+                        Arrays.asList("checkpoint","start","end")) {
+                    config.set(pos + "." + args[1], null);
+                }
                 break;
         }
         cConfig.save();
