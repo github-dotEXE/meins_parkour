@@ -111,10 +111,7 @@ public class ParkourUIManager {
     }
     public static void endEffects(Player player,ParkourSession session){
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,0.5f);
-        player.sendMessage(ChatColor.DARK_GREEN+"Ended parkour '"+session.getParkour()+"' in "+String.format("%dmin:%ds:%dmil",
-                TimeUnit.MILLISECONDS.toSeconds(session.getTimer())/60,
-                TimeUnit.MILLISECONDS.toSeconds(session.getTimer()) % 60,
-                session.getTimer() % 1000));
+        player.sendMessage(ChatColor.DARK_GREEN+"Ended parkour '"+session.getParkour()+"' in "+ParkourTimeManager.getAsString(session.getTimer()));
     }
     public static void checkpointEffects(Player player){
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,2);

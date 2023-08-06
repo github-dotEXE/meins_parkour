@@ -31,8 +31,7 @@ public final class Main extends JavaPlugin {
                 .addPathedComp("show","cancel")
         );
         ParkourLocationManager.init();
-
-
+        ParkourLeaderboardManager.init();
     }
 
     @Override
