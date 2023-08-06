@@ -1,8 +1,7 @@
-package de.ender.parkour.framework;
+package de.ender.parkour;
 
 import de.ender.core.CConfig;
 import de.ender.core.ItemBuilder;
-import de.ender.parkour.Main;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

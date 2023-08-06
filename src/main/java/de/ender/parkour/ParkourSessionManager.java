@@ -1,4 +1,4 @@
-package de.ender.parkour.framework;
+package de.ender.parkour;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -12,7 +12,9 @@ public class ParkourSessionManager {
         if(giveItems)ParkourUIManager.giveItems(player);
     }
     public static void end(Player player){
-        parkourSessions.get(player).end();
+        ParkourSession session = parkourSessions.get(player);
+        session.end();
+        ParkourTimeManager.setIfBetter(player,session.getTimer());
         parkourSessions.remove(player);
         ParkourUIManager.removeItems(player);
     }

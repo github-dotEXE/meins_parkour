@@ -3,13 +3,7 @@ package de.ender.parkour;
 import de.ender.core.Log;
 import de.ender.core.TabCompleter;
 import de.ender.core.UpdateChecker;
-import de.ender.parkour.framework.ParkourCMD;
-import de.ender.parkour.framework.ParkourListener;
-import de.ender.parkour.framework.ParkourLocationManager;
-import de.ender.parkour.framework.ParkourUIManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
 
 public final class Main extends JavaPlugin {
     private static Main plugin;

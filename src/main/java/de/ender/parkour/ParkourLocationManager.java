@@ -1,4 +1,4 @@
-package de.ender.parkour.framework;
+package de.ender.parkour;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;

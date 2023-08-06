@@ -1,6 +1,5 @@
-package de.ender.parkour.framework;
+package de.ender.parkour;
 
-import de.ender.parkour.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
