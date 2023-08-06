@@ -6,7 +6,7 @@
 
     <groupId>de.ender</groupId>
     <artifactId>parkour</artifactId>
-    <version>1.41</version>
+    <version>1.42</version>
     <packaging>jar</packaging>
 
     <name>meins_parkour</name>
@@ -69,7 +69,7 @@
         <dependency>
             <groupId>de.ender</groupId>
             <artifactId>core</artifactId>
-            <version>1.37</version>
+            <version>1.38</version>
         </dependency>
     </dependencies>
 </project>

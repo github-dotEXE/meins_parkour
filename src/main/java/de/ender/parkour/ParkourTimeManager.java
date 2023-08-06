@@ -32,7 +32,7 @@ public class ParkourTimeManager {
         return config.getLong(player.getUniqueId().toString());
     }
     public static String getAsString(long time){
-        return String.format("%dmin:%ds:%dmil",
+        return String.format("%dmin:%ds:%dms",
                 TimeUnit.MILLISECONDS.toSeconds(time)/60,
                 TimeUnit.MILLISECONDS.toSeconds(time) % 60,
                 time % 1000);
