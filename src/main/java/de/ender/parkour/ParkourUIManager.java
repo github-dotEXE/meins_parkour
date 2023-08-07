@@ -41,7 +41,7 @@ public class ParkourUIManager {
         }
         else if(item.equals(startItem)) {
             ParkourSessionManager.tpToStart(player);
-            ParkourUIManager.startEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());
+            //ParkourUIManager.startEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());
         }
         else if(item.equals(cancelItem)) {
             ParkourUIManager.cancelEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());

@@ -56,7 +56,7 @@ public class ParkourLeaderboardManager {
                 reloadLeaderboard();
                 return;
             }
-            customfloatText = new CustomFloatText("Leaderboard:",id, Display.Billboard.VERTICAL,false,181,0);
+            customfloatText = new CustomFloatText("Leaderboard:",id, Display.Billboard.HORIZONTAL,false,181,0);
             CustomFloatTextManager.addCustomFloatText(customfloatText);
         });
     }

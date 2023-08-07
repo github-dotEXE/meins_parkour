@@ -53,8 +53,7 @@ public class ParkourSession {
         }
     }
     public void setCheckpoint(Location location){
-        if(ParkourLocationManager.isCheckpointFromParkour(parkour,location))
-            checkpoint = location.setDirection(player.getLocation().getDirection());
+        checkpoint = location;
     }
     public Location getCheckpoint(){
         return checkpoint;
