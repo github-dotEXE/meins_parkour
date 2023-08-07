@@ -34,8 +34,8 @@ public class ParkourSessionManager {
     public static void tpToCheckpoint(Player player) {
         player.teleport(ParkourSessionManager.getSessionFromPlayer(player).getCheckpoint());
     }
-    public static void tpToStart(Player player) {
-        player.teleport(ParkourSessionManager.getSessionFromPlayer(player).getStartLocation());
+    public static void tpToStart(Player player,ParkourSession session) {
+        player.teleport(session.getStartLocation());
     }
 
     public static void cancelAll() {

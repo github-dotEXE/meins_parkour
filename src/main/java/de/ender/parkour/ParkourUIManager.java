@@ -40,7 +40,9 @@ public class ParkourUIManager {
             ParkourUIManager.checkpointEffects(player);
         }
         else if(item.equals(startItem)) {
-            ParkourSessionManager.tpToStart(player);
+            ParkourSession session = ParkourSessionManager.getSessionFromPlayer(player);
+            ParkourSessionManager.cancel(player,true);
+            ParkourSessionManager.tpToStart(player,session);
             //ParkourUIManager.startEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());
         }
         else if(item.equals(cancelItem)) {
