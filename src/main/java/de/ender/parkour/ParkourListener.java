@@ -35,7 +35,7 @@ public class ParkourListener implements Listener {
                 parkour,location)) {
             if(event.hasChangedBlock()&& !ParkourLocationManager.get000(session.getCheckpoint()).equals(location) )
                 ParkourUIManager.checkpointEffects(player);
-            session.setCheckpoint(player.getLocation());
+            session.setCheckpoint(location.clone().setDirection(player.getLocation().getDirection()));
         }
     }
     @EventHandler
