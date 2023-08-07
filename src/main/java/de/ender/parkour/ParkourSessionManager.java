@@ -14,7 +14,7 @@ public class ParkourSessionManager {
     public static void end(Player player){
         ParkourSession session = parkourSessions.get(player);
         session.end();
-        ParkourTimeManager.setIfBetter(player,session.getTimer());
+        ParkourTimeManager.setIfBetter(player,session.getTimer(),parkourSessions.get(player).getParkour());
         parkourSessions.remove(player);
         ParkourUIManager.removeItems(player);
     }

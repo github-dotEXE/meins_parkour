@@ -7,29 +7,29 @@ import org.bukkit.entity.Player;
 import java.util.concurrent.TimeUnit;
 
 public class ParkourTimeManager {
-    public static void setBestTime(Player player,long time){
+    public static void setBestTime(Player player, long time, String parkour){
         CConfig cConfig = new CConfig("parkour_times",Main.getPlugin());
         FileConfiguration config = cConfig.getCustomConfig();
 
-        config.set(player.getUniqueId().toString(),time);
+        config.set(parkour+"."+ player.getUniqueId(),time);
 
         cConfig.save();
         ParkourLeaderboardManager.reloadLeaderboard();
     }
-    public static boolean setIfBetter(Player player, long time){
-        if(!isBetter(player,time)) return false;
-        setBestTime(player, time);
+    public static boolean setIfBetter(Player player, long time, String parkour){
+        if(!isBetter(player,time,parkour)) return false;
+        setBestTime(player, time,parkour);
         return true;
     }
-    public static boolean isBetter(Player player,long time){
-        long bestTime = getBestTime(player);
+    public static boolean isBetter(Player player, long time, String parkour){
+        long bestTime = getBestTime(player,parkour);
         if(bestTime==0) return true;
         return time<bestTime;
     }
-    public static long getBestTime(Player player){
+    public static long getBestTime(Player player, String parkour){
         CConfig cConfig = new CConfig("parkour_times",Main.getPlugin());
         FileConfiguration config = cConfig.getCustomConfig();
-        return config.getLong(player.getUniqueId().toString());
+        return config.getLong(parkour+"."+ player.getUniqueId());
     }
     public static String getAsString(long time){
         return String.format("%dmin:%ds:%dms",
