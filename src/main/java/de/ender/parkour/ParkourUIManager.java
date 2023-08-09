@@ -2,6 +2,7 @@ package de.ender.parkour;
 
 import de.ender.core.CConfig;
 import de.ender.core.ItemBuilder;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -11,13 +12,13 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class ParkourUIManager {
     private static final HashMap<Player,ItemStack[]> inventorys = new HashMap<>();
-    private static final ItemStack checkpointItem = new ItemBuilder(Material.IRON_BLOCK,1).setName("§fCheckpoint").build();
-    private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("§6Start").build();
-    private static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("§4Cancel").build();
+    private static final ItemStack checkpointItem = new ItemBuilder(Material.IRON_BLOCK,1).setName("<white>Checkpoint").build();
+    private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("<orange>Start").build();
+    private static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("<dark_red>Cancel").build();
+    private static final MiniMessage miniMessage = MiniMessage.miniMessage();
     public static void giveItems(Player player){
         inventorys.put(player,player.getInventory().getContents().clone());
         player.getInventory().clear();
@@ -109,18 +110,19 @@ public class ParkourUIManager {
 
     public static void startEffects(Player player,String parkourName){
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,1.5f);
-        player.sendMessage(ChatColor.GREEN+"Started parkour '"+parkourName+"'");
+        player.sendMessage(miniMessage.deserialize("<green>Started parkour '"+parkourName+"'"));
     }
     public static void endEffects(Player player,ParkourSession session){
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,0.5f);
-        player.sendMessage(ChatColor.DARK_GREEN+"Ended parkour '"+session.getParkour()+"' in "+ParkourTimeManager.getAsString(session.getTimer()));
+        player.sendMessage(miniMessage.deserialize("<dark_green>Ended parkour '"+session.getParkour()+"' in "
+                +ParkourTimeManager.getAsString(session.getTimer())));
     }
     public static void checkpointEffects(Player player){
         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP,1,2);
     }
     public static void cancelEffects(Player player,String parkourName){
         player.playSound(player.getLocation(), Sound.ENTITY_CAT_HURT,1,1);
-        player.sendMessage(ChatColor.RED+"Canceled parkour '"+parkourName+"'");
+        player.sendMessage(miniMessage.deserialize("<red>Canceled parkour '"+parkourName+"'"));
     }
 
 }

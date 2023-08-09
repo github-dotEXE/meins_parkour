@@ -1,6 +1,6 @@
 package de.ender.parkour;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -10,10 +10,12 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class ParkourCMD implements CommandExecutor {
+    private static final MiniMessage miniMessage = MiniMessage.miniMessage();
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player)||!sender.hasPermission("parkour.command.parkour")) {
-            sender.sendMessage(ChatColor.RED+"Something went Wrong!");
+            sender.sendMessage(miniMessage.deserialize("<red>Something went Wrong!"));
             return false;
         }
         Player player = (Player) sender;
@@ -22,11 +24,11 @@ public class ParkourCMD implements CommandExecutor {
             case "set":
                 if(args[1].equals("end")) ParkourLocationManager.addEndLocation(args[2], loc);
                 else if(args[1].equals("start")) ParkourLocationManager.addStartLocation(args[2], loc);
-                else sender.sendMessage(ChatColor.RED+"Something went Wrong!");
+                else sender.sendMessage(miniMessage.deserialize("<red>Something went Wrong!"));
                 break;
             case "add":
                 if(args[1].equals("checkpoint")) ParkourLocationManager.addCheckpointLocation(args[2], loc);
-                else sender.sendMessage(ChatColor.RED+"Something went Wrong!");
+                else sender.sendMessage(miniMessage.deserialize("<red>Something went Wrong!"));
                 break;
             case "remove":
                 switch (args[1]) {
@@ -62,7 +64,7 @@ public class ParkourCMD implements CommandExecutor {
                 }
                 break;
             default:
-                sender.sendMessage(ChatColor.RED+"Something went Wrong!");
+                sender.sendMessage(miniMessage.deserialize("<red>Something went Wrong!"));
                 break;
         }
         return true;

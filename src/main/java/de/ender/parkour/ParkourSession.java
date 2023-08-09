@@ -1,6 +1,6 @@
 package de.ender.parkour;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,6 +17,7 @@ public class ParkourSession {
     private final BukkitTask bukkitRunnable;
     private final boolean allowFlight;
     private final Location startLocation;
+    private static final MiniMessage miniMessage = MiniMessage.miniMessage();
     public ParkourSession(Player player,String parkourName){
         this.player = player;
         startTime = System.currentTimeMillis();
@@ -30,9 +31,9 @@ public class ParkourSession {
             @Override
             public void run() {
                 if(ParkourSession.this.isCancelled()) cancel();
-                player.sendActionBar(ChatColor.GREEN + "Time: " + String.format("%dmin:%ds",
+                player.sendActionBar(miniMessage.deserialize("<green>Time: " + String.format("%dmin:%ds",
                         TimeUnit.MILLISECONDS.toSeconds(getTimer()) / 60,
-                        TimeUnit.MILLISECONDS.toSeconds(getTimer()) % 60));
+                        TimeUnit.MILLISECONDS.toSeconds(getTimer()) % 60)));
             }
         }.runTaskTimer(Main.getPlugin(),0,20);
     }

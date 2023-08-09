@@ -7,7 +7,6 @@ import de.ender.core.floattext.FloatText;
 import de.ender.core.floattext.FloatTextManager;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,8 +31,8 @@ public class ParkourLeaderboardManager {
             ConfigurationSection parkourpath = config.getConfigurationSection(parkour);
             if (parkourpath == null) continue;
             parkourpath.getValues(false).forEach((uuid, time) -> {
-                linetimes.put(Long.valueOf((Integer) time), ChatColor.DARK_AQUA +
-                        Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName() + ChatColor.RESET + " : " + ChatColor.AQUA
+                linetimes.put(Long.valueOf((Integer) time), "<aqua>" +
+                        Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName() + "<reset> : <aqua>"
                         + ParkourTimeManager.getAsString(Long.valueOf((Integer) time)));
                 times.add(Long.valueOf((Integer) time));
             });
