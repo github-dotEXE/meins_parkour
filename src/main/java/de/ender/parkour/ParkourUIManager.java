@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class ParkourUIManager {
     private static final HashMap<Player,ItemStack[]> inventorys = new HashMap<>();
     private static final ItemStack checkpointItem = new ItemBuilder(Material.IRON_BLOCK,1).setName("<white>Checkpoint").build();
-    private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("<orange>Start").build();
+    private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("<gold>Start").build();
     private static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("<dark_red>Cancel").build();
     private static final MiniMessage miniMessage = MiniMessage.miniMessage();
     public static void giveItems(Player player){

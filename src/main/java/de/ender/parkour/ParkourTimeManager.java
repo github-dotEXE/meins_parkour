@@ -14,7 +14,7 @@ public class ParkourTimeManager {
         config.set(parkour+"."+ player.getUniqueId(),time);
 
         cConfig.save();
-        ParkourLeaderboardManager.reloadLeaderboard();
+        ParkourLeaderboardManager.reloadLeaderboard(ParkourLeaderboardManager.getFloatTextByParkour(parkour).getFloatText());
     }
     public static boolean setIfBetter(Player player, long time, String parkour){
         if(!isBetter(player,time,parkour)) return false;

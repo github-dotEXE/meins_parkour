@@ -1,5 +1,6 @@
 package de.ender.parkour;
 
+import com.google.gson.JsonArray;
 import de.ender.core.CConfig;
 import de.ender.core.floattext.CustomFloatText;
 import de.ender.core.floattext.CustomFloatTextManager;
@@ -15,9 +16,8 @@ import org.bukkit.entity.Display;
 import java.util.*;
 
 public class ParkourLeaderboardManager {
-    public static FloatText floatText;
-    public static CustomFloatText customfloatText;
-    public static void reloadLeaderboard() {
+
+    public static void reloadLeaderboard(FloatText floatText) {
         for (String parkour : ParkourLocationManager.getParkours()) {
             NamespacedKey id = new NamespacedKey(Main.getPlugin(), "leaderboard_" + parkour);
 
@@ -39,24 +39,29 @@ public class ParkourLeaderboardManager {
             Collections.sort(times);
             times.forEach((time) -> lines.add(linetimes.get(time)));
             lines.add(0, parkour + ":");
-            writeLines(lines, id);
+            writeLines(lines, id, floatText);
         }
     }
-    private static void writeLines(ArrayList<String> lines,NamespacedKey id){
+    private static void writeLines(ArrayList<String> lines,NamespacedKey id,FloatText floatText){
         String text = StringUtils.join(Arrays.copyOf(lines.toArray(),Math.min(10+1,lines.size())),"\n");
-        if(FloatTextManager.getByID(id)!=null||customfloatText.isSpawned()) floatText.setText(text);
+        if(FloatTextManager.getByID(id)!=null) floatText.setText(text);
     }
     public static void init(){
         ParkourLocationManager.getParkours().forEach((parkour)->{
             NamespacedKey id = new NamespacedKey(Main.getPlugin(),"leaderboard_"+parkour);
 
+            CustomFloatText customFloatText;
             if(FloatTextManager.getByID(id)!=null) {
-                floatText = FloatTextManager.getByID(id);
-                reloadLeaderboard();
-                customfloatText = new CustomFloatText(floatText,id);
+                FloatText floatText = FloatTextManager.getByID(id);
+                reloadLeaderboard(floatText);
+                customFloatText = new CustomFloatText(floatText,id);
             }
-            else customfloatText = new CustomFloatText("Leaderboard:",id, Display.Billboard.HORIZONTAL,false,false,181,0);
-            CustomFloatTextManager.addCustomFloatText(customfloatText);
+            else customFloatText = new CustomFloatText("Leaderboard:",id, Display.Billboard.HORIZONTAL,false,false,181,0);
+            CustomFloatTextManager.addCustomFloatText(customFloatText);
         });
+    }
+
+    public static CustomFloatText getFloatTextByParkour(String parkour) {
+        return CustomFloatTextManager.getCustomFloatTextByID(new NamespacedKey(Main.getPlugin(),"leaderboard_"+parkour));
     }
 }
