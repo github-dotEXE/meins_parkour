@@ -24,7 +24,6 @@ public class ParkourLocationManager {
 
         if(start==null||end==null) return;
 
-
         start.getValues(false).forEach((parkourName,startLocation)->{
             startLocations.put(parkourName, (Location) startLocation);
         });
@@ -123,7 +122,7 @@ public class ParkourLocationManager {
     public static Location get000(Location loc){
         loc.setYaw(0);
         loc.setPitch(0);
-        loc.set(loc.getBlockX()+0.5,loc.getBlockY()+0.5,loc.getBlockZ()+0.5);
+        loc.set(loc.getBlockX()+0.5,loc.getBlockY()+0.0,loc.getBlockZ()+0.5);
         return loc;
     }
 

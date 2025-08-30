@@ -37,11 +37,14 @@ public class ParkourUIManager {
     }
     public static void useParkourItem(Player player,ItemStack item){
         if(item.equals(checkpointItem)) {
+            ParkourSession session = ParkourSessionManager.getSessionFromPlayer(player);
+            if (ParkourLocationManager.isCheckpointFromParkour(session.getParkour(), player.getLocation())) return;
             ParkourSessionManager.tpToCheckpoint(player);
             ParkourUIManager.checkpointEffects(player);
         }
         else if(item.equals(startItem)) {
             ParkourSession session = ParkourSessionManager.getSessionFromPlayer(player);
+            if (ParkourLocationManager.isStartFromParkour(session.getParkour(), player.getLocation())) return;
             ParkourSessionManager.cancel(player,true);
             ParkourSessionManager.tpToStart(player,session);
             //ParkourUIManager.startEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());

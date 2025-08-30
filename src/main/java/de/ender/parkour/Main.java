@@ -11,7 +11,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         Log.enable(this);
-        new UpdateChecker(this,"master").check().downloadLatestMeins();
+        //new UpdateChecker(this,"master").check().downloadLatestMeins();
         plugin = this;
 
         getServer().getPluginManager().registerEvents(new ParkourListener(),this);
