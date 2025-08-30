@@ -22,7 +22,8 @@ public class ParkourListener implements Listener {
         if(ParkourLocationManager.isStartLoc(location)) {
             boolean wasInParkour = ParkourSessionManager.isInParkour(player);
             ParkourSessionManager.cancel(player,event.hasChangedBlock()||!wasInParkour);
-            ParkourSessionManager.start(player, ParkourLocationManager.getParkour(location),event.hasChangedBlock()||!wasInParkour);
+            ParkourSessionManager.start(player, ParkourLocationManager.getParkour(location),
+                    event.hasChangedBlock()||!wasInParkour,event.hasChangedBlock()&&!wasInParkour);
 
             if(!wasInParkour) ParkourUIManager.startEffects(player,ParkourSessionManager.getSessionFromPlayer(player).getParkour());
         }

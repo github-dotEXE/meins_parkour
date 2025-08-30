@@ -18,41 +18,40 @@ import java.util.*;
 public class ParkourLeaderboardManager {
 
     public static void reloadLeaderboard(FloatText floatText) {
-        for (String parkour : ParkourLocationManager.getParkours()) {
-            NamespacedKey id = new NamespacedKey(Main.getPlugin(), "leaderboard_" + parkour);
+        NamespacedKey id = floatText.getId();
+        String parkour = id.getKey().replace("leaderboard_","");
 
-            CConfig cConfig = new CConfig("parkour_times", Main.getPlugin());
-            FileConfiguration config = cConfig.getCustomConfig();
+        CConfig cConfig = new CConfig("parkour_times", Main.getPlugin());
+        FileConfiguration config = cConfig.getCustomConfig();
 
-            HashMap<Long, String> linetimes = new HashMap<>();
-            ArrayList<Long> times = new ArrayList<>();
-            ArrayList<String> lines = new ArrayList<>();
+        HashMap<Long, String> linetimes = new HashMap<>();
+        ArrayList<Long> times = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>();
 
-            ConfigurationSection parkourpath = config.getConfigurationSection(parkour);
-            if (parkourpath == null) continue;
-            parkourpath.getValues(false).forEach((uuid, time) -> {
-                linetimes.put(Long.valueOf((Integer) time), "<aqua>" +
-                        Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName() + "<reset> : <aqua>"
-                        + ParkourTimeManager.getAsString(Long.valueOf((Integer) time)));
-                times.add(Long.valueOf((Integer) time));
-            });
-            Collections.sort(times);
-            times.forEach((time) -> lines.add(linetimes.get(time)));
-            lines.add(0, parkour + ":");
-            writeLines(lines, id, floatText);
-        }
+        ConfigurationSection parkourpath = config.getConfigurationSection(parkour);
+        if (parkourpath == null) return;
+        parkourpath.getValues(false).forEach((uuid, time) -> {
+            linetimes.put(Long.valueOf((Integer) time), "<aqua>" +
+                    Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName() + "<reset> : <aqua>"
+                    + ParkourTimeManager.getAsString(Long.valueOf((Integer) time)));
+            times.add(Long.valueOf((Integer) time));
+        });
+        Collections.sort(times);
+        times.forEach((time) -> lines.add(linetimes.get(time)));
+        lines.add(0, parkour + ":");
+        writeLines(lines, id, floatText);
     }
     private static void writeLines(ArrayList<String> lines,NamespacedKey id,FloatText floatText){
         String text = StringUtils.join(Arrays.copyOf(lines.toArray(),Math.min(10+1,lines.size())),"\n");
-        if(FloatTextManager.getByID(id)!=null) floatText.setText(text);
+        if(FloatTextManager.getByID(id)!=null&&floatText.getEntity()!=null) floatText.setText(text);
     }
     public static void init(){
         ParkourLocationManager.getParkours().forEach((parkour)->{
             NamespacedKey id = new NamespacedKey(Main.getPlugin(),"leaderboard_"+parkour);
 
             CustomFloatText customFloatText;
-            if(FloatTextManager.getByID(id)!=null) {
-                FloatText floatText = FloatTextManager.getByID(id);
+            FloatText floatText = FloatTextManager.getByID(id);
+            if(floatText!=null&&floatText.getEntity()!=null) {
                 reloadLeaderboard(floatText);
                 customFloatText = new CustomFloatText(floatText,id);
             }

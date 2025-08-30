@@ -12,7 +12,7 @@
     <name>meins_parkour</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -27,6 +27,18 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <paperweight-mappings-namespace>mojang</paperweight-mappings-namespace>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -38,14 +50,14 @@
 
     <distributionManagement>
         <repository>
-            <id>de.ender-releases</id>
-            <url>http://repo.etwas--anders.de/releases</url>
+            <id>de.ender</id>
+            <url>https://repo.etwas--anders.de/releases</url>
         </repository>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>papermc-repo</id>
+            <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
@@ -55,7 +67,7 @@
         <repository>
             <id>de.ender-releases</id>
             <name>meins_repo</name>
-            <url>http://repo.etwas--anders.de/releases</url>
+            <url>https://repo.etwas--anders.de/releases</url>
         </repository>
     </repositories>
 
@@ -63,13 +75,13 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <version>1.21.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>de.ender</groupId>
             <artifactId>core</artifactId>
-            <version>1.43</version>
+            <version>1.46</version>
         </dependency>
         <dependency>
             <groupId>net.kyori</groupId>

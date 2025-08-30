@@ -16,11 +16,6 @@ public class ParkourTimeManager {
         cConfig.save();
         ParkourLeaderboardManager.reloadLeaderboard(ParkourLeaderboardManager.getFloatTextByParkour(parkour).getFloatText());
     }
-    public static boolean setIfBetter(Player player, long time, String parkour){
-        if(!isBetter(player,time,parkour)) return false;
-        setBestTime(player, time,parkour);
-        return true;
-    }
     public static boolean isBetter(Player player, long time, String parkour){
         long bestTime = getBestTime(player,parkour);
         if(bestTime==0) return true;
@@ -29,7 +24,7 @@ public class ParkourTimeManager {
     public static long getBestTime(Player player, String parkour){
         CConfig cConfig = new CConfig("parkour_times",Main.getPlugin());
         FileConfiguration config = cConfig.getCustomConfig();
-        return config.getLong(parkour+"."+ player.getUniqueId());
+        return config.getLong(parkour+"."+ player.getUniqueId(), Long.MAX_VALUE);
     }
     public static String getAsString(long time){
         return String.format("%dmin:%ds:%dms",

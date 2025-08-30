@@ -19,10 +19,10 @@ public class ParkourUIManager {
     private static final ItemStack startItem = new ItemBuilder(Material.GOLD_BLOCK,1).setName("<gold>Start").build();
     private static final ItemStack cancelItem = new ItemBuilder(Material.REDSTONE_BLOCK,1).setName("<dark_red>Cancel").build();
     private static final MiniMessage miniMessage = MiniMessage.miniMessage();
-    public static void giveItems(Player player){
+    public static void giveItems(Player player, boolean changeSlot){
         inventorys.put(player,player.getInventory().getContents().clone());
         player.getInventory().clear();
-        player.getInventory().setHeldItemSlot(4);
+        if (changeSlot) player.getInventory().setHeldItemSlot(4);
         player.getInventory().setItem(4,checkpointItem);
         player.getInventory().setItem(3,startItem);
         player.getInventory().setItem(5,cancelItem);
